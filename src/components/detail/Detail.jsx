@@ -1,13 +1,15 @@
 import { auth } from "../../lib/firebase";
+import { useChatStore } from "../../lib/chatStore";
 import "./detail.css";
 
 const Detail = () => {
+  const { user } = useChatStore();
   return (
     <div className="detail">
       <div className="user">
         <img src="./avatar.png" alt="" />
-        <h2>john doe</h2>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <h2>{user?.username || "Unknown User"}</h2>
+        <p>{user?.bio || "No bio available."}</p>
       </div>
       <div className="info">
         <div className="option">
@@ -36,7 +38,7 @@ const Detail = () => {
                 />
                 <span>photo_2025_1.png</span>
               </div>
-              <img src="./download.png" alt="" className="icon"/>
+              <img src="./download.png" alt="" className="icon" />
             </div>
             <div className="photoItem">
               <div className="photoDetail">
@@ -46,7 +48,7 @@ const Detail = () => {
                 />
                 <span>photo_2025_1.png</span>
               </div>
-              <img src="./download.png" alt="" className="icon"/>
+              <img src="./download.png" alt="" className="icon" />
             </div>
             <div className="photoItem">
               <div className="photoDetail">
@@ -56,7 +58,7 @@ const Detail = () => {
                 />
                 <span>photo_2025_1.png</span>
               </div>
-              <img src="./download.png" alt="" className="icon"/>
+              <img src="./download.png" alt="" className="icon" />
             </div>
           </div>
         </div>
@@ -66,8 +68,9 @@ const Detail = () => {
             <img src="arrowUp.png" alt="" />
           </div>
         </div>
-        <button>Block User</button>
-        <button className="logout" onClick={()=>auth.signOut()}>Logout</button>
+        <button className="logout" onClick={() => auth.signOut()}>
+          Logout
+        </button>
       </div>
     </div>
   );
